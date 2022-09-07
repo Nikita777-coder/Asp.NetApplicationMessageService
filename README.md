@@ -11,12 +11,17 @@ This programm implementes functional for watching info about users who in databa
 - AddUser - adding user to database
 - AddMessage - adding message to database\
 \
+\
 **Get commands**
 - ListOfUsers - getting all users which in service
-- ListOfMessagesBetweenUsers - getting message list between users
+- ListOfMessages - getting message list between users
 - ListOfUsersFromDatabase - getting all users from service file
 - ListOfMessagesFromDatabase - getting all messages from service file
 - FindUser - finding user and getting info about him
+- GetMessageBySenderAndReceiverEmails - get messages between users
+- GetBySenderEmail - getting all messages which were sent by user
+- GetByReceiverEmail -  getting all messages which were received to user
+- GetLimitUsersFromOffset - getting all user from offset to limit user
 
 ## About entered data
 - mail can be in any format (standarding with @; any string) 
