@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServiceOfMessages</name>
+    </assembly>
+    <members>
+        <member name="T:ServiceOfMessages.Controllers.Models.CheckEnteredEmailOnCorrectness">
+            <summary>
+            Класс для проверки введённой почты.
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.CheckEnteredEmailOnCorrectness.#ctor(System.String)">
+            <summary>
+            Конструктор для получения заданной почты.
+            </summary>
+            <param name="email">введённая почта</param>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.CheckEnteredEmailOnCorrectness.IsEnteredEmailCorrect">
+            <summary>
+            Проверка заданной почты.
+            </summary>
+            <returns>true, если почта корректна, false иначе</returns>
+        </member>
+        <member name="T:ServiceOfMessages.Controllers.Models.GenerationOfSubjectAndMessage">
+            <summary>
+            Класс для генерации сообщения и его темы.
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.GenerationOfSubjectAndMessage.GenerateSubject">
+            <summary>
+            Генерация темы.
+            </summary>
+            <returns>сгенерированную тему</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.GenerationOfSubjectAndMessage.GenerateMessage">
+            <summary>
+            Генерация сообщения.
+            </summary>
+            <returns>сгенерированное сообщение</returns>
+        </member>
+        <member name="T:ServiceOfMessages.Controllers.Models.MessageOne">
+            <summary>
+            Класс для создания сообщения между пользователями.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.Subject">
+            <summary>
+            Св-во для темы сообщения.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.Message">
+            <summary>
+            Св-во для сообщения.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.SenderId">
+            <summary>
+            Св-во для пользователя-отправителя.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.ReceiverId">
+            <summary>
+            Св-во для пользователя-получателя.
+            </summary>
+        </member>
+        <member name="T:ServiceOfMessages.Controllers.Models.GenerationOfEmail">
+            <summary>
+            Класс для генерации почты пользователя.
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.GenerationOfEmail.GenerateLoginAndDomainName(System.Boolean)">
+            <summary>
+            Генерация логина и домена.
+            </summary>
+            <param name="domainName">метот нужен для генерации домена?</param>
+            <returns>сгенерированный логин или домен.</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.Models.GenerationOfEmail.GenerateRegion">
+            <summary>
+            Генерация региона почты.
+            </summary>
+            <returns>сгенерированный регион.</returns>
+        </member>
+        <member name="T:ServiceOfMessages.Controllers.Models.User">
+            <summary>
+            Класс для создания пользователя.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.User.UserName">
+            <summary>
+            Св-во для имени пользователя.
+            </summary>
+        </member>
+        <member name="P:ServiceOfMessages.Controllers.Models.User.Email">
+            <summary>
+            Св-во для почты пользователя.
+            </summary>
+        </member>
+        <member name="T:ServiceOfMessages.Controllers.ServiceOfMessages">
+            <summary>
+            Определение нужных атрибутов для контроллера и самого контроллера.
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.ClearJsonFiles">
+            <summary>
+            Очищение Json файлов.
+            </summary>
+            <returns>информацию об умпешном очищении файлов или ошибку 404</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post">
+            <summary>
+            Инициализация списка пользователей и сообщений с помощью Random.
+            </summary>
+            <returns>сообщение об успешной инициализации списков.</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post(System.String,System.String)">
+            <summary>
+            Добавление пользователя.
+            </summary>
+            <param name="email">почта новго пользователя</param>
+            <param name="name">имя новго пользователя</param>
+            <returns>информацию об успешном добавлении пользователя или ошибку 400 с описанием неккоректности 
+            для умпешного добавления пользователя</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post(System.String,System.String,System.String,System.String)">
+            <summary>
+            Добавление новго сообщения в сервис.
+            </summary>
+            <param name="senderEmail">почта пользователя-отправителя</param>
+            <param name="receiverEmail">почта пользователя-получателя</param>
+            <param name="message">новое сообщение</param>
+            <param name="subject">тема новго сообщения</param>
+            <returns>информацию об успешном добавлении сообщения в сервис или ошибку 404, если не была найдена почта пользователя
+            -отправителя или пользователя-получателя</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get">
+            <summary>
+            Получение списка пользователей, зарегистрированных на сервере.
+            </summary>
+            <returns>список пользователей, зарегистрированных на сервере</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.ListOfMessagesBetweenUsers">
+            <summary>
+            Получение списка сообщений, отправленных на сервер.
+            </summary>
+            <returns>список сообщений, отправленных на сервер</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.UsersFromJson">
+            <summary>
+            Получение пользователей, хранящихся в файле users.json (файл располагается там же, где exe).
+            </summary>
+            <returns>список пользователей, хранящихся в файле users.json</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.MessagesFromJson">
+            <summary>
+            Получение сообщений, хранящихся в файле messages.json (файл располагается там же, где exe).
+            </summary>
+            <returns>список сообщений, хранящихся в файле messages.json</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.String)">
+            <summary>
+            Посик пользователя на сервере по его почте.
+            </summary>
+            <param name="email">почта пользователя</param>
+            <returns>информацию о пользователе, если был такой найден или сообщение о том, что такого пользователя не 
+            существует</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.String,System.String)">
+            <summary>
+            Получение всех сообщений между заданными пользователями.
+            </summary>
+            <param name="senderId">почта пользователя-отправителя</param>
+            <param name="receiverId">почта пользователя-получателя</param>
+            <returns>список сообщений между заданными пользователями или ошибку 404 о том, что не был найден 
+            пользователь-отправитель или пользователь-получатель</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.GEt(System.String)">
+            <summary>
+            Получение всех сообщений, отправленных пользователем.
+            </summary>
+            <param name="senderId">почта пользователя-отпарвителя</param>
+            <returns>все сообщения, отправленные пользователем, или информацию о том, что у заданного пользователя-отпарвителя 
+            отсутствуют сообщения</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.GET(System.String)">
+            <summary>
+            Получение всех сообщений, отправленных пользователю.
+            </summary>
+            <param name="receiverId">почта пользователя-получателя</param>
+            <returns>все сообщения, отправленные пользователю, или информацию о том, что у заданного пользователя-получателя 
+            отсутствуют сообщения</returns>
+        </member>
+        <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.Int32,System.Int32)">
+            <summary>
+            Получение ограниченного кол-ва пользователей, начиная с некоторого пользователя.
+            </summary>
+            <param name="limit">ограничение по кол-ву пользователй</param>
+            <param name="offset">индекс пользователя, с которого надо вывести ограниченное кол-во пользоватлей</param>
+            <returns>возможных пользователей с заданнного или ошибку 400 с указанием информации об ошибки</returns>
+        </member>
+        <member name="T:ServiceOfMessages.Program">
+            <summary>
+            ����� ��� ������� ���������.
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Program.Main(System.String[])">
+            <summary>
+            ����� ������� �������.
+            </summary>
+            <param name="args">���������, ������������ � �������</param>
+        </member>
+        <member name="M:ServiceOfMessages.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            �������� ������������ ������.
+            </summary>
+            <param name="args">���������, ������������ � �������</param>
+            <returns></returns>
+        </member>
+        <member name="T:ServiceOfMessages.Startup">
+            <summary>
+            ����� ��� ����� �������
+            </summary>
+        </member>
+        <member name="M:ServiceOfMessages.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            ��������� ����������� ������������ �������.
+            </summary>
+            <param name="configuration">��������� ������������</param>
+        </member>
+        <member name="P:ServiceOfMessages.Startup.Configuration">
+            <summary>
+            ��-�� ��� ��������� ������������.
+            </summary>
+        </member>
+    </members>
+</doc>
