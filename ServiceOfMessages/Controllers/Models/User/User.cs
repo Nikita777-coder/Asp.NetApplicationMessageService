@@ -4,17 +4,17 @@ using System.Runtime.Serialization;
 namespace ServiceOfMessages.Controllers.Models
 {
     /// <summary>
-    /// Класс для создания пользователя.
+    /// Creating user
     /// </summary>
     public class User
     {
         /// <summary>
-        /// Св-во для имени пользователя.
+        /// User name
         /// </summary>
         public string UserName { get; set; }
 
         /// <summary>
-        /// Св-во для почты пользователя.
+        /// User email
         /// </summary>
         [Required]
         public string Email { get; set; }

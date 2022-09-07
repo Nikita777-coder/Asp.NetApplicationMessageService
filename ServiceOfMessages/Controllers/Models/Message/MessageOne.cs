@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ServiceOfMessages.Controllers.Models
 {
     /// <summary>
-    /// Класс для создания сообщения между пользователями.
+    /// Creating message between users.
     /// </summary>
     public class MessageOne
     {

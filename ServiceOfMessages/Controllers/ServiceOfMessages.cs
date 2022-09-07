@@ -40,9 +40,9 @@ namespace ServiceOfMessages.Controllers
             }
         }
         /// <summary>
-        /// Инициализация списка пользователей и сообщений с помощью Random.
+        /// List user initialization with module Random.
         /// </summary>
-        /// <returns>сообщение об успешной инициализации списков.</returns>
+        /// <returns>message with successful initialising of lists</returns>
         [HttpPost("POST/Initialization")]
         public IActionResult Post()
         {

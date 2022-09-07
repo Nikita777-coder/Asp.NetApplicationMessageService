@@ -45,22 +45,22 @@
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.Subject">
             <summary>
-            Св-во для темы сообщения.
+            Message Subject
             </summary>
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.Message">
             <summary>
-            Св-во для сообщения.
+            User message
             </summary>
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.SenderId">
             <summary>
-            Св-во для пользователя-отправителя.
+            User sender id 
             </summary>
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.MessageOne.ReceiverId">
             <summary>
-            Св-во для пользователя-получателя.
+            User receiver id
             </summary>
         </member>
         <member name="T:ServiceOfMessages.Controllers.Models.GenerationOfEmail">
@@ -88,12 +88,12 @@
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.User.UserName">
             <summary>
-            Св-во для имени пользователя.
+            User name
             </summary>
         </member>
         <member name="P:ServiceOfMessages.Controllers.Models.User.Email">
             <summary>
-            Св-во для почты пользователя.
+            User email
             </summary>
         </member>
         <member name="T:ServiceOfMessages.Controllers.ServiceOfMessages">
@@ -109,9 +109,9 @@
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post">
             <summary>
-            Инициализация списка пользователей и сообщений с помощью Random.
+            List user initialization with module Random.
             </summary>
-            <returns>сообщение об успешной инициализации списков.</returns>
+            <returns>message with successful initialising of lists</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post(System.String,System.String)">
             <summary>
