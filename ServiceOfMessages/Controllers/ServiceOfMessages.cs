@@ -20,9 +20,9 @@ namespace ServiceOfMessages.Controllers
         private Random random = new();
 
         /// <summary>
-        /// Очищение Json файлов.
+        /// Database cleaning
         /// </summary>
-        /// <returns>информацию об умпешном очищении файлов или ошибку 404</returns>
+        /// <returns>info about successful cleaning or error 404</returns>
         [HttpPost("POST/ClearDatabase")]
         public IActionResult ClearJsonFiles()
         {
@@ -31,12 +31,12 @@ namespace ServiceOfMessages.Controllers
                 using StreamWriter sw = new("users.json"), sw1 = new("messages.json");
                 sw.Flush();
                 sw1.Flush();
-                return Ok("Файлы очищены");
+                return Ok("Database was cleaned");
             }
 
             catch(Exception)
             {
-                return BadRequest("Файлы не могут быть почищены.");
+                return BadRequest("Database can't be cleaned");
             }
         }
         /// <summary>
@@ -118,46 +118,44 @@ namespace ServiceOfMessages.Controllers
 
             }
 
-            return Ok("Список пользователей и сообщений успешно инициализированы.");
+            return Ok("List of users and message list were successful initialized");
         }
 
         /// <summary>
-        /// Добавление пользователя.
+        /// User adding.
         /// </summary>
-        /// <param name="email">почта новго пользователя</param>
-        /// <param name="name">имя новго пользователя</param>
-        /// <returns>информацию об успешном добавлении пользователя или ошибку 400 с описанием неккоректности 
-        /// для умпешного добавления пользователя</returns>
+        /// <param name="email">new user email</param>
+        /// <param name="name">new user name</param>
+        /// <returns>info about successful user adding or 400 error with error description.</returns>>
         [HttpPost("POST/AddUser/{email}")]
         public IActionResult Post(string email, string name = "")
         {
             if (users.Select(el => el.Email).Contains(email))
-                return BadRequest("Пользователь с такой почтой уже существует.");
+                return BadRequest("User with the same mail already exist");
 
             // По умолчанию имя пользователя такое же, как и логин почты.
             var nameOfUser = name == "" ? email.Split("@")[0] : name;
 
             users.Add(new User { Email = email, UserName = nameOfUser });
             users = users.OrderBy(el => el.Email).ToList();
-            return Ok($"Пользователь с почтой - {email} - успешно добавлен.");
+            return Ok($"User with mail - {email} - successfully added.");
         }
 
         /// <summary>
-        /// Добавление новго сообщения в сервис.
+        /// New message adding to service.
         /// </summary>
-        /// <param name="senderEmail">почта пользователя-отправителя</param>
-        /// <param name="receiverEmail">почта пользователя-получателя</param>
-        /// <param name="message">новое сообщение</param>
-        /// <param name="subject">тема новго сообщения</param>
-        /// <returns>информацию об успешном добавлении сообщения в сервис или ошибку 404, если не была найдена почта пользователя
-        /// -отправителя или пользователя-получателя</returns>
+        /// <param name="senderEmail">user-sender mail</param>
+        /// <param name="receiverEmail">user-receiver</param>
+        /// <param name="message">new message</param>
+        /// <param name="subject">new message theme</param>
+        /// <returns>info about successful message adding or 400 error with error description.</returns>
         [HttpPost("POST/AddMessage/{senderEmail}/{receiverEmail}/{message}")]
         public IActionResult Post(string senderEmail, string receiverEmail, string message, string subject="")
         {
             if (!users.Select(el => el.Email).Contains(senderEmail))
-                return NotFound("В списке пользователей отсутствует введённый отправитель.");
+                return NotFound("Entered user-sender is not in list");
             if (!users.Select(el => el.Email).Contains(receiverEmail))
-                return NotFound("В списке пользователей отсутствует введённый получатель.");
+                return NotFound("Entered user-receiver is not in list");
 
             // Генерация темы сообщения в случае, если она оказалась не указана.
             var subj = subject == "" ? new GenerationOfSubjectAndMessage().GenerateSubject() : subject;
@@ -165,33 +163,33 @@ namespace ServiceOfMessages.Controllers
             messages.Add(new MessageOne { Message = message, Subject = subj, ReceiverId = receiverEmail, SenderId
                 = senderEmail });
 
-            return Ok($"Сообщение от {senderEmail} до {receiverEmail} успешно добавлено.");
+            return Ok($"Message from {senderEmail} to {receiverEmail} was added successfully");
         }
 
         /// <summary>
-        /// Получение списка пользователей, зарегистрированных на сервере.
+        /// Getting user list who register in service.
         /// </summary>
-        /// <returns>список пользователей, зарегистрированных на сервере</returns>
+        /// <returns>user list who register in service</returns>
         [HttpGet("GET/ListOfUsers")]
         public IEnumerable<User> Get() => users;
 
         /// <summary>
-        /// Получение списка сообщений, отправленных на сервер.
+        /// Getting all messages from service.
         /// </summary>
-        /// <returns>список сообщений, отправленных на сервер</returns>
+        /// <returns>all messages from service</returns>
         [HttpGet("GET/ListOfMessagesBetweenUsers")]
         public IEnumerable<MessageOne> ListOfMessagesBetweenUsers() => messages;
 
         /// <summary>
-        /// Получение пользователей, хранящихся в файле users.json (файл располагается там же, где exe).
+        /// Getting all users from file.
         /// </summary>
-        /// <returns>список пользователей, хранящихся в файле users.json</returns>
+        /// <returns>list of users from file</returns>
         [HttpGet("GET/UsersFromDatabase")]
         public List<User> UsersFromJson()
         {
             try
             {
-                using StreamReader sw = new("users.json");
+                using StreamReader sw = new("users.json"); // file located where .exe;
                 string jsonTextUsers = sw.ReadToEnd();
                 return JsonSerializer.Deserialize<List<User>>(jsonTextUsers);
             }
@@ -203,15 +201,15 @@ namespace ServiceOfMessages.Controllers
         }
 
         /// <summary>
-        /// Получение сообщений, хранящихся в файле messages.json (файл располагается там же, где exe).
+        /// Getting all messages from file.
         /// </summary>
-        /// <returns>список сообщений, хранящихся в файле messages.json</returns>
+        /// <returns>message list from file</returns>
         [HttpGet("GET/MessagesFromDatabase")]
         public List<MessageOne> MessagesFromJson()
         {
             try
             {
-                using StreamReader sw = new("messages.json");
+                using StreamReader sw = new("messages.json"); // file located where .exe;
                 string jsonTextMessages = sw.ReadToEnd();
                 return JsonSerializer.Deserialize<List<MessageOne>>(jsonTextMessages);
             }
@@ -223,27 +221,25 @@ namespace ServiceOfMessages.Controllers
         }
 
         /// <summary>
-        /// Посик пользователя на сервере по его почте.
+        /// Searching user by his email.
         /// </summary>
-        /// <param name="email">почта пользователя</param>
-        /// <returns>информацию о пользователе, если был такой найден или сообщение о том, что такого пользователя не 
-        /// существует</returns>
+        /// <param name="email">user-mail</param>
+        /// <returns>info about successful user searching or 400 error with error description.</returns>
         [HttpGet("GET/FindUser/{email}")]
         public IActionResult Get(string email)
         {
             var user = users.Find(el => el.Email == email);
             if (user == null)
-                return NotFound("Такого пользователя нет на сервере.");
+                return NotFound("User wasn't found in server");
             return Ok(user);
         }
 
         /// <summary>
-        /// Получение всех сообщений между заданными пользователями.
+        /// Getting all messages between users.
         /// </summary>
-        /// <param name="senderId">почта пользователя-отправителя</param>
-        /// <param name="receiverId">почта пользователя-получателя</param>
-        /// <returns>список сообщений между заданными пользователями или ошибку 404 о том, что не был найден 
-        /// пользователь-отправитель или пользователь-получатель</returns>
+        /// <param name="senderId">user-sender email</param>
+        /// <param name="receiverId">user-receiver email</param>
+        /// <returns>list of messages between users or 404 error with description</returns>
         [HttpGet("GET/GetMessageBySenderAndReceiverEmails/{senderId}/{receiverId}")]
         public IActionResult Get(string senderId, string receiverId)
         {
@@ -264,52 +260,50 @@ namespace ServiceOfMessages.Controllers
         }
 
         /// <summary>
-        /// Получение всех сообщений, отправленных пользователем.
+        /// Getting all messages which were sent by user.
         /// </summary>
-        /// <param name="senderId">почта пользователя-отпарвителя</param>
-        /// <returns>все сообщения, отправленные пользователем, или информацию о том, что у заданного пользователя-отпарвителя 
-        /// отсутствуют сообщения</returns>
+        /// <param name="senderId">user-sender</param>
+        /// <returns>all messages which were sent by user</returns>
         [HttpGet("GET/GetBySenderEmail/{senderId}")]
         public IActionResult GEt(string senderId)
         {
             var messagesOfSenderId = messages.Where(el => el.SenderId == senderId).Select(el => el.Message).ToList();
 
             if (messagesOfSenderId.Count == 0)
-                return Ok("У заданного отправителя отсутсвуют сообщения");
+                return Ok("This user didn't send any messsage");
             return Ok(messagesOfSenderId);
         }
 
         /// <summary>
-        /// Получение всех сообщений, отправленных пользователю.
+        /// Getting all messages which were sent to user.
         /// </summary>
-        /// <param name="receiverId">почта пользователя-получателя</param>
-        /// <returns>все сообщения, отправленные пользователю, или информацию о том, что у заданного пользователя-получателя 
-        /// отсутствуют сообщения</returns>
+        /// <param name="receiverId">user-receiver mail</param>
+        /// <returns>all messages which were sent to user.</returns>
         [HttpGet("GET/GetByReceiverEmail/{receiverId}")]
         public IActionResult GET(string receiverId)
         {
             var messagesOfReceiverId = messages.Where(el => el.ReceiverId == receiverId).Select(el => el.Message).ToList();
 
             if (messagesOfReceiverId.Count == 0)
-                return Ok("У заданного отправителя отсутсвуют сообщения");
+                return Ok("This user didn't received any message");
             return Ok(messagesOfReceiverId);
         }
 
         /// <summary>
-        /// Получение ограниченного кол-ва пользователей, начиная с некоторого пользователя.
+        /// Getting range of users.
         /// </summary>
-        /// <param name="limit">ограничение по кол-ву пользователй</param>
-        /// <param name="offset">индекс пользователя, с которого надо вывести ограниченное кол-во пользоватлей</param>
-        /// <returns>возможных пользователей с заданнного или ошибку 400 с указанием информации об ошибки</returns>
+        /// <param name="limit">user list length limit</param>
+        /// <param name="offset">begin user id</param>
+        /// <returns>list of users or bad request with description.</returns>
         [HttpGet("GET/GetLimitUsersFromOffset/{limit}/{offset}")]
         public IActionResult Get(int limit, int offset)
         {
             if (limit <= 0)
-                return BadRequest($"Limit должно быть > 0");
+                return BadRequest($"Limit must be > 0");
             if (offset < 0)
-                return BadRequest("Offset должно быть >= 0");
+                return BadRequest("Offset must be >= 0");
             if (offset > users.Count - 1)
-                return BadRequest("Offset превышает максимальный индекс списка пользователей");
+                return BadRequest("Outrange offset");
 
             var selectedUsers = new List<User>();
             int countOfUsers = 0;
