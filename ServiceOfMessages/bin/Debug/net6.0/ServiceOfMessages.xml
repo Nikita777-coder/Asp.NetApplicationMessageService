@@ -103,9 +103,9 @@
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.ClearJsonFiles">
             <summary>
-            Очищение Json файлов.
+            Database cleaning
             </summary>
-            <returns>информацию об умпешном очищении файлов или ошибку 404</returns>
+            <returns>info about successful cleaning or error 404</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post">
             <summary>
@@ -115,88 +115,82 @@
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post(System.String,System.String)">
             <summary>
-            Добавление пользователя.
+            User adding.
             </summary>
-            <param name="email">почта новго пользователя</param>
-            <param name="name">имя новго пользователя</param>
-            <returns>информацию об успешном добавлении пользователя или ошибку 400 с описанием неккоректности 
-            для умпешного добавления пользователя</returns>
+            <param name="email">new user email</param>
+            <param name="name">new user name</param>
+            <returns>info about successful user adding or 400 error with error description.</returns>>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Post(System.String,System.String,System.String,System.String)">
             <summary>
-            Добавление новго сообщения в сервис.
+            New message adding to service.
             </summary>
-            <param name="senderEmail">почта пользователя-отправителя</param>
-            <param name="receiverEmail">почта пользователя-получателя</param>
-            <param name="message">новое сообщение</param>
-            <param name="subject">тема новго сообщения</param>
-            <returns>информацию об успешном добавлении сообщения в сервис или ошибку 404, если не была найдена почта пользователя
-            -отправителя или пользователя-получателя</returns>
+            <param name="senderEmail">user-sender mail</param>
+            <param name="receiverEmail">user-receiver</param>
+            <param name="message">new message</param>
+            <param name="subject">new message theme</param>
+            <returns>info about successful message adding or 400 error with error description.</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get">
             <summary>
-            Получение списка пользователей, зарегистрированных на сервере.
+            Getting user list who register in service.
             </summary>
-            <returns>список пользователей, зарегистрированных на сервере</returns>
+            <returns>user list who register in service</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.ListOfMessagesBetweenUsers">
             <summary>
-            Получение списка сообщений, отправленных на сервер.
+            Getting all messages from service.
             </summary>
-            <returns>список сообщений, отправленных на сервер</returns>
+            <returns>all messages from service</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.UsersFromJson">
             <summary>
-            Получение пользователей, хранящихся в файле users.json (файл располагается там же, где exe).
+            Getting all users from file.
             </summary>
-            <returns>список пользователей, хранящихся в файле users.json</returns>
+            <returns>list of users from file</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.MessagesFromJson">
             <summary>
-            Получение сообщений, хранящихся в файле messages.json (файл располагается там же, где exe).
+            Getting all messages from file.
             </summary>
-            <returns>список сообщений, хранящихся в файле messages.json</returns>
+            <returns>message list from file</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.String)">
             <summary>
-            Посик пользователя на сервере по его почте.
+            Searching user by his email.
             </summary>
-            <param name="email">почта пользователя</param>
-            <returns>информацию о пользователе, если был такой найден или сообщение о том, что такого пользователя не 
-            существует</returns>
+            <param name="email">user-mail</param>
+            <returns>info about successful user searching or 400 error with error description.</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.String,System.String)">
             <summary>
-            Получение всех сообщений между заданными пользователями.
+            Getting all messages between users.
             </summary>
-            <param name="senderId">почта пользователя-отправителя</param>
-            <param name="receiverId">почта пользователя-получателя</param>
-            <returns>список сообщений между заданными пользователями или ошибку 404 о том, что не был найден 
-            пользователь-отправитель или пользователь-получатель</returns>
+            <param name="senderId">user-sender email</param>
+            <param name="receiverId">user-receiver email</param>
+            <returns>list of messages between users or 404 error with description</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.GEt(System.String)">
             <summary>
-            Получение всех сообщений, отправленных пользователем.
+            Getting all messages which were sent by user.
             </summary>
-            <param name="senderId">почта пользователя-отпарвителя</param>
-            <returns>все сообщения, отправленные пользователем, или информацию о том, что у заданного пользователя-отпарвителя 
-            отсутствуют сообщения</returns>
+            <param name="senderId">user-sender</param>
+            <returns>all messages which were sent by user</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.GET(System.String)">
             <summary>
-            Получение всех сообщений, отправленных пользователю.
+            Getting all messages which were sent to user.
             </summary>
-            <param name="receiverId">почта пользователя-получателя</param>
-            <returns>все сообщения, отправленные пользователю, или информацию о том, что у заданного пользователя-получателя 
-            отсутствуют сообщения</returns>
+            <param name="receiverId">user-receiver mail</param>
+            <returns>all messages which were sent to user.</returns>
         </member>
         <member name="M:ServiceOfMessages.Controllers.ServiceOfMessages.Get(System.Int32,System.Int32)">
             <summary>
-            Получение ограниченного кол-ва пользователей, начиная с некоторого пользователя.
+            Getting range of users.
             </summary>
-            <param name="limit">ограничение по кол-ву пользователй</param>
-            <param name="offset">индекс пользователя, с которого надо вывести ограниченное кол-во пользоватлей</param>
-            <returns>возможных пользователей с заданнного или ошибку 400 с указанием информации об ошибки</returns>
+            <param name="limit">user list length limit</param>
+            <param name="offset">begin user id</param>
+            <returns>list of users or bad request with description.</returns>
         </member>
         <member name="T:ServiceOfMessages.Program">
             <summary>

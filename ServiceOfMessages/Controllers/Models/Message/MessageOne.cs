@@ -9,25 +9,25 @@ namespace ServiceOfMessages.Controllers.Models
     public class MessageOne
     {
         /// <summary>
-        /// Св-во для темы сообщения.
+        /// Message Subject
         /// </summary>
         [Required]
         public string Subject { get; set; }
 
         /// <summary>
-        /// Св-во для сообщения.
+        /// User message
         /// </summary>
         [Required]
         public string Message { get; set; }
 
         /// <summary>
-        /// Св-во для пользователя-отправителя.
+        /// User sender id 
         /// </summary>
         [Required]
         public string SenderId { get; set; }
 
         /// <summary>
-        /// Св-во для пользователя-получателя.
+        /// User receiver id
         /// </summary>
         [Required]
         public string ReceiverId { get; set; }
