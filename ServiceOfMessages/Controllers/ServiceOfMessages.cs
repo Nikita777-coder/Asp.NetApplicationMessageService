@@ -23,7 +23,7 @@ namespace ServiceOfMessages.Controllers
         /// Очищение Json файлов.
         /// </summary>
         /// <returns>информацию об умпешном очищении файлов или ошибку 404</returns>
-        [HttpPost("POST/ClearJsonFiles")]
+        [HttpPost("POST/ClearDatabase")]
         public IActionResult ClearJsonFiles()
         {
             try
@@ -43,7 +43,7 @@ namespace ServiceOfMessages.Controllers
         /// Инициализация списка пользователей и сообщений с помощью Random.
         /// </summary>
         /// <returns>сообщение об успешной инициализации списков.</returns>
-        [HttpPost("POST/initialization")]
+        [HttpPost("POST/Initialization")]
         public IActionResult Post()
         {
             // Десереализаиция пользоватлей и сообщений.
@@ -186,7 +186,7 @@ namespace ServiceOfMessages.Controllers
         /// Получение пользователей, хранящихся в файле users.json (файл располагается там же, где exe).
         /// </summary>
         /// <returns>список пользователей, хранящихся в файле users.json</returns>
-        [HttpGet("GET/UsersFromJson")]
+        [HttpGet("GET/UsersFromDatabase")]
         public List<User> UsersFromJson()
         {
             try
@@ -206,7 +206,7 @@ namespace ServiceOfMessages.Controllers
         /// Получение сообщений, хранящихся в файле messages.json (файл располагается там же, где exe).
         /// </summary>
         /// <returns>список сообщений, хранящихся в файле messages.json</returns>
-        [HttpGet("GET/MessagesFromJson")]
+        [HttpGet("GET/MessagesFromDatabase")]
         public List<MessageOne> MessagesFromJson()
         {
             try
